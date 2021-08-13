@@ -60,6 +60,12 @@ print(sumOfNumbers2)
 
 
 def power(n, m):
-    # raise n to the power of m.
-    # and return the result.
-    pass
+    result = 1
+
+    for i in range(m):
+        result *= n
+
+    return result
+
+
+print(power(10, 6))  # 8
