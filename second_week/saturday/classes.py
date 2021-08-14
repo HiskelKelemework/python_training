@@ -101,25 +101,25 @@ class MotorCycle(Vehicle):
         super().drive("motorcycle")
 
 
-car_engine = Engine(500)
-car_tires = [
-    Tire(22, "Bridgestone"),
-    Tire(22, "Bridgestone"),
-    Tire(22, "Bridgestone"),
-    Tire(22, "Bridgestone"),
-]
+# car_engine = Engine(500)
+# car_tires = [
+#     Tire(22, "Bridgestone"),
+#     Tire(22, "Bridgestone"),
+#     Tire(22, "Bridgestone"),
+#     Tire(22, "Bridgestone"),
+# ]
 
-car = Car(car_engine, car_tires)
-car.drive()
+# car = Car(car_engine, car_tires)
+# car.drive()
 
-motorcycle_engine = Engine(100)
-motorcycle_tires = [
-    Tire(18, "Bridgestone"),
-    Tire(18, "Bridgestone"),
-]
+# motorcycle_engine = Engine(100)
+# motorcycle_tires = [
+#     Tire(18, "Bridgestone"),
+#     Tire(18, "Bridgestone"),
+# ]
 
-bugati = MotorCycle(motorcycle_engine, motorcycle_tires)
-bugati.drive()
+# bugati = MotorCycle(motorcycle_engine, motorcycle_tires)
+# bugati.drive()
 
 # Person
 #    def __init__(self):
@@ -143,3 +143,61 @@ bugati.drive()
 # Parrot
 # talk
 # fly
+
+class Animal:
+    def __init__(self, numberOfLegs, name):
+        self.numberOfLegs = numberOfLegs
+        self.name = name
+
+    def walk(self):
+        print(self.name, "walking...")
+
+
+class Person(Animal):
+    def __init__(self):
+        super().__init__(2, "Person")
+
+    def talk(self):
+        print("person talking..")
+
+
+class Dog(Animal):
+    def __init__(self):
+        super().__init__(4, "Dog")
+
+    def bark(self):
+        print("wooof woof")
+
+
+class Bird(Animal):
+    def __init__(self, numberOfWings, numberOfLegs, name):
+        super().__init__(numberOfLegs, name)
+        self.numberOfWings = numberOfWings
+
+    def fly(self):
+        print(self.name, "is flying with", self.numberOfWings, "wings")
+
+
+class Eagle(Bird):
+    def __init__(self):
+        super().__init__(2, 2, "Eagle")
+
+
+class Parrot(Bird):
+    def __init__(self):
+        super().__init__(2, 2, "Parrot")
+
+    def talk(self):
+        print(self.name, "talking")
+
+
+eagle = Eagle()
+eagle.walk()
+
+parrot = Parrot()
+parrot.walk()
+parrot.talk()
+
+person = Person()
+person.walk()
+person.talk()
