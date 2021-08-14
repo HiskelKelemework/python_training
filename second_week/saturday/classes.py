@@ -65,4 +65,81 @@ class RemoteControl:
         self.tv.volumeUp(upBy)
 
 
-sony = Television("Sony", "24 In.", 12000, 8, "Flat screen")
+class Tire:
+    def __init__(self, radius, brand):
+        self.radius = radius
+        self.brand = brand
+
+
+class Engine:
+    def __init__(self, horsepower):
+        self.horsepower = horsepower
+
+
+class Vehicle:
+    def __init__(self, engine, tires):
+        self.engine = engine
+        self.tires = tires
+
+    def drive(self, type="vehicle"):
+        print(type, "driving with ", len(self.tires), "wheels")
+
+
+class Car(Vehicle):
+    def __init__(self, engine, tires):
+        super().__init__(engine, tires)
+
+    def drive(self):
+        super().drive("car")
+
+
+class MotorCycle(Vehicle):
+    def __init__(self, engine, tires):
+        super().__init__(engine, tires)
+
+    def drive(self):
+        super().drive("motorcycle")
+
+
+car_engine = Engine(500)
+car_tires = [
+    Tire(22, "Bridgestone"),
+    Tire(22, "Bridgestone"),
+    Tire(22, "Bridgestone"),
+    Tire(22, "Bridgestone"),
+]
+
+car = Car(car_engine, car_tires)
+car.drive()
+
+motorcycle_engine = Engine(100)
+motorcycle_tires = [
+    Tire(18, "Bridgestone"),
+    Tire(18, "Bridgestone"),
+]
+
+bugati = MotorCycle(motorcycle_engine, motorcycle_tires)
+bugati.drive()
+
+# Person
+#    def __init__(self):
+#         self.numberOfLegs
+
+#     def walk(self):
+#         pass
+
+#     def talk(self):
+#         pass
+
+# Dog
+# walk
+# bark
+
+# birds have numberOfWings, numberOfLegs
+# Eagle
+# walk
+# fly
+
+# Parrot
+# talk
+# fly
