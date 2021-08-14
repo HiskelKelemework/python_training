@@ -20,10 +20,49 @@ class Person:
         print(self.name, "is eating")
 
 
-abebe = Person("Abebe", 35, 1.85)
-kebede = Person("Kebede", 24, 1.77)
+class Television:
+    def __init__(self, model, size, price, weight, type, volume=20, channel=1):
+        self.model = model
+        self.size = size
+        self.price = price
+        self.weight = weight
+        self.type = type
 
-abebe.walk()
-kebede.walk()
+        self.volume = volume
+        self.channel = channel
 
-# model a television.
+    def __str__(self):
+        return self.model + " " + self.size + " " + self.type
+
+    def volumeUp(self, upBy=1):
+        if self.volume + upBy > 100:
+            return
+
+        self.volume += upBy
+        print("volume is", self.volume)
+
+    def volumeDown(self, downBy=1):
+        if self.volume - downBy < 0:
+            return
+
+        self.volume -= downBy
+        print("volume is", self.volume)
+
+    def channelUp(self):
+        self.channel += 1
+        print("channel is", self.channel)
+
+    def channelDown(self):
+        self.channel -= 1
+        print("channel is", self.channel)
+
+
+class RemoteControl:
+    def __init__(self, tv):
+        self.tv = tv
+
+    def volumeUp(self, upBy=1):
+        self.tv.volumeUp(upBy)
+
+
+sony = Television("Sony", "24 In.", 12000, 8, "Flat screen")
