@@ -67,5 +67,12 @@ def power(n, m):
 
     return result
 
+# print(power(10, 6))  # 8
 
-print(power(10, 6))  # 8
+
+# parameters with default values.
+def greet(name, greeting="Hello"):
+    print(greeting, name)
+
+
+greet("Hiskel", "Bonjour")
