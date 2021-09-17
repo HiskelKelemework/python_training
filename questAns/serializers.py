@@ -15,12 +15,6 @@ class TeacherSerializer(serializers.ModelSerializer):
 
 
 class CourseSerializer(serializers.ModelSerializer):
-    # instructors = serializers.PrimaryKeyRelatedField(
-    #     many=True, queryset=Teacher.objects.all())
-
-    # departments = serializers.PrimaryKeyRelatedField(
-    #     many=True, queryset=Department.objects.all())
-
     class Meta:
         model = Course
         fields = ['id', 'code', 'title', 'credit',
