@@ -1,0 +1,106 @@
+<html>
+
+<body>
+    <h2>All Departments</h2>
+
+    <input type="text" id="dept-name" placeholder="Department name">
+    <button onclick="addDepartment();">Add</button>
+
+    <div id="dept-wrapper">
+
+    </div>
+
+
+
+    <script>
+        function displayDepartment(department) {
+            const dept = document.createElement('div');
+
+            const deptName = document.createElement('h3');
+            deptName.innerHTML = department.name;
+            deptName.id = "dept-" + department.id;
+
+            const editButton = document.createElement('button');
+            editButton.innerHTML = "Edit";
+
+            editButton.onclick = () => {
+                editDepartment(department.id);
+            }
+
+            dept.appendChild(deptName);
+            dept.appendChild(editButton);
+
+            const deptWrapper = document.getElementById("dept-wrapper");
+            deptWrapper.appendChild(dept);
+        }
+
+        function editDepartmentView(department) {
+            const titleId = "dept-" + department.id;
+            const titleElement = document.getElementById(titleId);
+            titleElement.innerHTML = department.name;
+        }
+
+        const baseUrl = 'http://127.0.0.1:8000/';
+
+        function showAllDepartments() {
+            fetch(baseUrl + 'questans/departments/')
+                .then((response) => response.json())
+                .then((departments) => {
+                    console.log(departments);
+                    for (let department of departments) {
+                        displayDepartment(department);
+                    }
+                });
+        }
+
+        function addDepartment() {
+            const inputField = document.getElementById("dept-name");
+            const deptName = inputField.value;
+
+            const postData = {
+                name: deptName
+            };
+
+
+            fetch(baseUrl + 'questans/departments/',
+                {
+                    method: 'POST',
+                    body: JSON.stringify(postData),
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                }).then((response) => response.json())
+                .then((department) => {
+                    displayDepartment(department);
+                });
+
+        }
+
+        function editDepartment(deptId) {
+            const inputField = document.getElementById("dept-name");
+            const deptName = inputField.value;
+
+            const postData = {
+                name: deptName
+            };
+
+
+            fetch(baseUrl + 'questans/departments/' + deptId,
+                {
+                    method: 'PUT',
+                    body: JSON.stringify(postData),
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                }).then((response) => response.json())
+                .then((department) => {
+                    editDepartmentView(department);
+                });
+        }
+
+        // fetching the list of departments
+        showAllDepartments();
+    </script>
+</body>
+
+</html>

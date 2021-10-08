@@ -1,5 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.shortcuts import render
 from .models import Department
 from .serializers import DepartmentSerializer
 
@@ -19,7 +20,7 @@ class DepartmentListView(APIView):
             serializer.save()
             return Response(serializer.data)
         else:
-            return Response('department list view post response works')
+            return Response(status=400)
 
 
 class DepartmentsDetailView(APIView):
@@ -36,4 +37,17 @@ class DepartmentsDetailView(APIView):
             serializer.save()
             return Response(serializer.data)
 
-        return Response('update failed')
+        return Response(status=400)
+
+    def delete(self, request, pk):
+        department = Department.objects.get(pk=pk)
+        serializer = DepartmentSerializer(department, data=request.data)
+
+        department.delete()
+
+        return Response(serializer.data)
+
+
+def departments(request):
+    # send back some html
+    return render(request, 'departments.html', None)
